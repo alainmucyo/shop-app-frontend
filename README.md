@@ -22,7 +22,7 @@ Shop app Frontend is the user interface for the Online Shopping Platform designe
 
 ## Configuration
 
-* Open the `.env` or `src/utils/api.js` file and set the `API_URL` to your backend URL. If you don't set it, the application will attempt to connect to `http://localhost:3000` by default.
+* Open the `src/utils/api.js` file and set the `baseURL` to your backend URL. If you don't set it, the application will attempt to connect to `https://alainmucyo-shop.fly.dev/api/` by default.
 
 ## Running the project
 

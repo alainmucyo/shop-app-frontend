@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useAuthStore } from '@/stores/auth';
 
 const instance = axios.create({
-    baseURL: process.env.API_URL || 'https://alainmucyo-shop.fly.dev/api/'
+    baseURL: 'https://alainmucyo-shop.fly.dev/api/'
 });
 
 // This interceptor runs before each request

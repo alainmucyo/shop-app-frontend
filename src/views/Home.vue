@@ -27,9 +27,11 @@
           <p class="text-gray-500 mt-2">Price: ${{ product.price }}</p>
           <p class="text-sm text-gray-400 mt-2">Added At: {{ new Date(product.created_at).toLocaleDateString() }}</p>
           <button
+              :disabled="isAddingToCart[product.id]"
               class="mt-4 flex items-center bg-blue-600 text-white text-sm px-2 py-1 rounded hover:bg-blue-700 duration-100"
               @click="addToCart(product)">
-            <AddToCartIcon/>
+            <div v-if="isAddingToCart[product.id]" class="loader"></div>
+            <AddToCartIcon v-else />
             Add to Cart
           </button>
         </div>
@@ -60,6 +62,7 @@ export default {
   data() {
     return {
       isLoading: false,
+      isAddingToCart: {},
     }
   },
   computed: {
@@ -79,7 +82,10 @@ export default {
   },
   methods: {
     addToCart(product) {
-      useCartStore().addToCart(product);
+      this.isAddingToCart = { ...this.isAddingToCart, [product.id]: true };
+      useCartStore().addToCart(product).then(() => {
+        this.isAddingToCart = { ...this.isAddingToCart, [product.id]: false };
+      });
     },
     logout() {
       useAuthStore().logout();
@@ -90,5 +96,17 @@ export default {
 </script>
 
 <style scoped>
+.loader {
+  border: 2px solid #f3f3f3; /* Light grey */
+  border-top: 2px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  animation: spin 2s linear infinite;
+}
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 </style>
