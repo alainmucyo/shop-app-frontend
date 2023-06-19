@@ -1,6 +1,6 @@
 # shop app Frontend
 
-Shop app Frontend is the user interface for managing books and authors. It is built using Vue.js.
+Shop app Frontend is the user interface for the Online Shopping Platform designed to track which items are added to a basket but removed before checkout. This data is beneficial for the sales team to offer targeted discounts.
 
 ---
 
